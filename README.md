@@ -31,7 +31,6 @@ I got the most bareboned installation of NextUI to get a basic table component u
 1. I used Brad Frost's [Atomic Design](https://atomicdesign.bradfrost.com/) methodology to build the UI. This meant seeing the UI as composable building blocks in `atoms`, `molecules`, and `organisms`.
 2. I chose to follow the CoinGecko's color scheme overall, and mirrored closely Blockchain.com's [market data UI](https://www.blockchain.com/explorer/assets/BTC)
 3. Wherever possible, I choose to extract constants and global variables into their own files. This is to ensure that the code is readable and maintainable.
-4.
 
 ## Finally, to run this project locally...
 
