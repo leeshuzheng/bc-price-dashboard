@@ -15,7 +15,7 @@ export const usdFormat = (
 };
 export const parsePrice = (price: number) => {
   const priceInUsd = new BigNumber(price);
-  let decimalPlaces = priceInUsd.lt(1) ? 4 : 2;
+  const decimalPlaces = priceInUsd.lt(1) ? 4 : 2;
   return usdFormat(price, decimalPlaces);
 };
 
