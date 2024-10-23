@@ -9,8 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
-import { TriangleDownIcon, TriangleUpIcon } from "@radix-ui/react-icons";
-import clsx from "clsx";
 import Link from "next/link";
 import { Key, useCallback } from "react";
 import { columns, tableClassNames } from "./constants";
@@ -23,22 +21,6 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
     usd_24h_vol: item[1].usd_24h_vol,
     usd_market_cap: item[1].usd_market_cap,
   }));
-
-  const handle24PriceChange = (change: number) => {
-    const isNegative = change < 0;
-    const Icon = isNegative ? TriangleDownIcon : TriangleUpIcon;
-    return (
-      <span
-        className={clsx("flex items-center gap-0.5", {
-          "text-green": !isNegative,
-          "text-red": isNegative,
-        })}
-      >
-        <Icon />
-        {change}
-      </span>
-    );
-  };
   // sanitise $ with decimal points
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
