@@ -28,10 +28,9 @@ export const columns = [
 ];
 
 export const tableClassNames = {
-  wrapper: "p-0 bg-transparent shadow-none",
-  th: "bg-transparent",
+  wrapper: "p-0 bg-transparent shadow-none rounded-none",
+  th: "bg-transparent border-b border-neutral-50/5",
   td: "border-b border-neutral-50/5 py-3 text-xs lg:text-sm",
-  tr: "hover:bg-neutral-50/10",
   thead: "rounded-none",
   base: "lg:h-[500px] overflow-auto",
   table: "",

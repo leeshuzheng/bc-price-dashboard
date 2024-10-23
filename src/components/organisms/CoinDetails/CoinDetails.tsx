@@ -1,7 +1,6 @@
 import { Badge } from "@/components/atoms";
 import {
   SizeVariants,
-  Skeleton,
   StatBlock,
   ValueChangeDisplay,
 } from "@/components/molecules";
@@ -10,6 +9,7 @@ import { useCoinDetails } from "@/hooks";
 import { parsePrice, usdFormat } from "@/utils";
 import Image from "next/image";
 import { useMemo } from "react";
+import { LoadingSkeleton } from "./LoadingSkeleton";
 
 export const CoinDetails = ({ coin }: { coin: string }) => {
   const { data, isFetching, isError } = useCoinDetails(coin);
@@ -47,39 +47,17 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
     ];
   }, [data]);
 
-  const loading = !data || isFetching;
-
   if (isError && !isFetching) {
     return <SimpleError />;
   }
+
   return (
     <div className="flex flex-col gap-3">
-      {loading ? (
-        <div className="flex flex-col gap-3">
-          <div className="flex gap-2">
-            <Skeleton className="h-5 w-[112px]" />
-            <Skeleton className="h-5 w-[112px]" />
-            <Skeleton className="h-5 w-[112px]" />
-          </div>
-          <Skeleton className="h-6 w-[155px]" />
-          <Skeleton className="h-9 w-[205px]" />
-          <div className="mt-5">
-            <Skeleton className="h-9 w-[105px]" />
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
-            {Array.from({ length: 7 }).map((_, index) => (
-              <div key={index} className="col-span-1 flex flex-col">
-                <div className="flex flex-col gap-2">
-                  <Skeleton className="h-6 w-[70%]" />
-                  <Skeleton className="h-8 w-full" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {!data || isFetching ? (
+        <LoadingSkeleton />
       ) : (
         <>
-          <section className="pb-8 flex flex-col gap-3">
+          <section className="pb-4 md:pb-8 flex flex-col gap-3">
             {data?.categories.length && (
               <ul className="flex gap-2 flex-wrap">
                 {data?.categories
@@ -115,7 +93,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
               </div>
             </div>
           </section>
-          <section className="flex flex-col gap-12 pt-8 border-t border-neutral-50/10">
+          <section className="flex flex-col gap-6 lg:gap-12 pt-4 lg:pt-8 border-t border-neutral-50/10">
             <h4 className="text-base font-semibold">Market Info</h4>
             <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
               {coinStats.map((stat) => (

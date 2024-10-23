@@ -1,40 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Price Dashboard
 
-## Getting Started
+[Live demo](https://pricedashboard.leeshuzheng.io/)
 
-First, run the development server:
+This web app interacts with the CoinGecko API to provide up-to-date cryptocurrency information. It's designed to be a simple and intuitive tool for anyone looking to track market data with ease.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I bootstrapped this project using [Create Next App](https://nextjs.org/docs/pages/api-reference/cli/create-next-app) with Typescript, along with the following:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Retrieving data: Tanstack Query
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- I was familiar with [tanstack's react-query](https://tanstack.com/query/latest), and aside from the magic that came with declarative querying, I love that it manages loading, fetching and error states for API calls
+- Handling the different states helps me build intentional and sensible UI for end users
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Tailwind CSS
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+I have to admit - as someone who got very used to writing raw CSS, I was not the biggest fan of Tailwind CSS at first. Having built a number of websites with the BEM and SASS method, it was unusual to apply styles in a different way. However, the from-the-ground-up approach to styling through Tailwind forces me to think about constructing UI through applying and using carefully thought out configuration.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### NextUI for <table>
 
-## Learn More
+I got the most bareboned installation of NextUI to get a basic table component up and running. It's a pain handling tables, and this is a great package for devs who have sufficient understanding of building UIs.
 
-To learn more about Next.js, take a look at the following resources:
+## To run this project locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+`cd` to the project directory and run `yarn`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Once `node_modules` are installed...
 
-## Deploy on Vercel
+### `yarn dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+Launches the app in [http://localhost:3000](http://localhost:3000) (or another port if you have an active port running).

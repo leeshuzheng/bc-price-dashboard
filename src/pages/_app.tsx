@@ -1,4 +1,4 @@
-import { Header } from "@/components/organisms";
+import { Footer, Header } from "@/components/organisms";
 import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <NextTopLoader color="#80e038" />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </main>
       </NextUIProvider>
     </QueryClientProvider>

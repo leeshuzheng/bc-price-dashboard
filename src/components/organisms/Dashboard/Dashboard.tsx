@@ -57,7 +57,10 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
         </TableHeader>
         <TableBody items={coinsArr}>
           {(item) => (
-            <TableRow key={item.coin} className="cursor-pointer">
+            <TableRow
+              key={item.coin}
+              className="cursor-pointer hover:bg-neutral-50/10 transition-colors duration-100"
+            >
               {(columnKey) => (
                 <TableCell className="capitalize">
                   {renderCell(item, columnKey)}
