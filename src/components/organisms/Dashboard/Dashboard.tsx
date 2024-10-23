@@ -28,7 +28,9 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
       case "coin":
         return <Link href={`/coins/${item.coin}`}>{item.coin}</Link>;
       case "usd":
-        return parsePrice(item.usd);
+        return (
+          <p className="text-right pr-5 md:pr-12">{parsePrice(item.usd)}</p>
+        );
       case "usd_24h_change":
         return <ValueChangeDisplay change={item.usd_24h_change} />;
       case "usd_24h_vol":
@@ -49,7 +51,7 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
           {(column) => (
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             <TableColumn key={column.key} width={column.width as any}>
-              {column.label}
+              <p className={column.className}>{column.label}</p>
             </TableColumn>
           )}
         </TableHeader>

@@ -1,6 +1,7 @@
 import { Badge } from "@/components/atoms";
 import {
   SizeVariants,
+  Skeleton,
   StatBlock,
   ValueChangeDisplay,
 } from "@/components/molecules";
@@ -46,15 +47,36 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
     ];
   }, [data]);
 
-  console.log("data", data);
+  const loading = !data || isFetching;
 
-  if (isError) {
+  if (isError && !isFetching) {
     return <SimpleError />;
   }
   return (
     <div className="flex flex-col gap-3">
-      {!data && isFetching ? (
-        <div>Loading skeleton...</div>
+      {loading ? (
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-2">
+            <Skeleton className="h-5 w-[112px]" />
+            <Skeleton className="h-5 w-[112px]" />
+            <Skeleton className="h-5 w-[112px]" />
+          </div>
+          <Skeleton className="h-6 w-[155px]" />
+          <Skeleton className="h-9 w-[205px]" />
+          <div className="mt-5">
+            <Skeleton className="h-9 w-[105px]" />
+          </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
+            {Array.from({ length: 7 }).map((_, index) => (
+              <div key={index} className="col-span-1 flex flex-col">
+                <div className="flex flex-col gap-2">
+                  <Skeleton className="h-6 w-[70%]" />
+                  <Skeleton className="h-8 w-full" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       ) : (
         <>
           <section className="pb-8 flex flex-col gap-3">
@@ -67,7 +89,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
                   ))}
               </ul>
             )}
-            <div>
+            <div className="flex flex-col gap-1.5">
               <h2 className="capitalize font-semibold text-lg flex items-center gap-1.5">
                 {data?.image?.large && (
                   <Image
@@ -97,9 +119,9 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
             <h4 className="text-base font-semibold">Market Info</h4>
             <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
               {coinStats.map((stat) => (
-                <div key={stat.key} className="col-span-1">
+                <li key={stat.key} className="col-span-1">
                   <StatBlock title={stat.key} value={stat.value} />
-                </div>
+                </li>
               ))}
             </ul>
           </section>

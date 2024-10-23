@@ -9,7 +9,7 @@ export const Skeleton = ({
   return (
     <div
       className={clsx(
-        "animate-pulse bg-muted relative overflow-hidden",
+        "animate-pulse bg-muted/10 relative overflow-hidden",
         circle && "rounded-full",
         !circle && "rounded-md",
         className

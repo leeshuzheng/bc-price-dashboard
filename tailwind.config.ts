@@ -26,6 +26,17 @@ const config: Config = {
         shadow: "#4a6382",
         red: "#ff3a33",
         green: "#32ca5b",
+        muted: "#e4e4e7",
+      },
+      keyframes: {
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+      },
+      animation: {
+        shimmer: "shimmer 2s infinite",
       },
     },
   },
