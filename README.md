@@ -1,8 +1,8 @@
 # Price Dashboard
 
-[Live demo](https://pricedashboard.leeshuzheng.io/)
+## This web app interacts with the CoinGecko API to provide up-to-date cryptocurrency information. It's designed to be a simple and intuitive tool for anyone looking to track market data with ease.
 
-This web app interacts with the CoinGecko API to provide up-to-date cryptocurrency information. It's designed to be a simple and intuitive tool for anyone looking to track market data with ease.
+[Live demo](https://pricedashboard.leeshuzheng.io/)
 
 I bootstrapped this project using [Create Next App](https://nextjs.org/docs/pages/api-reference/cli/create-next-app) with Typescript, along with the following:
 
