@@ -21,7 +21,6 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
     usd_24h_vol: item[1].usd_24h_vol,
     usd_market_cap: item[1].usd_market_cap,
   }));
-  // sanitise $ with decimal points
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderCell = useCallback((item: any, key: Key) => {
@@ -41,7 +40,7 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
   }, []);
 
   return (
-    <div className="container mx-auto flex flex-col gap-5 px-5">
+    <div className="flex flex-col gap-5">
       <h2 className="text-lg lg:text-2xl font-semibold">
         Cryptocurrency Prices by Market Cap
       </h2>

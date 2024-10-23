@@ -4,16 +4,14 @@ import {
   StatBlock,
   ValueChangeDisplay,
 } from "@/components/molecules";
+import { SimpleError } from "@/components/organisms";
 import { useCoinDetails } from "@/hooks";
 import { parsePrice, usdFormat } from "@/utils";
 import Image from "next/image";
-import Link from "next/link";
 import { useMemo } from "react";
 
 export const CoinDetails = ({ coin }: { coin: string }) => {
   const { data, isFetching, isError } = useCoinDetails(coin);
-
-  console.log(data);
 
   const coinStats = useMemo(() => {
     return [
@@ -48,19 +46,13 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
     ];
   }, [data]);
 
+  console.log("data", data);
+
   if (isError) {
-    return (
-      <div className="container px-5">
-        <h2 className="font-bold text-2xl">
-          Uh oh... I think we&apos;re lost. The page you&apos;re looking for
-          could not be found.
-          <Link href="/">Take me home</Link>
-        </h2>
-      </div>
-    );
+    return <SimpleError />;
   }
   return (
-    <div className="flex flex-col gap-3 container px-5 mx-auto min-h-screen">
+    <div className="flex flex-col gap-3">
       {!data && isFetching ? (
         <div>Loading skeleton...</div>
       ) : (
@@ -69,7 +61,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
             {data?.categories.length && (
               <ul className="flex gap-2 flex-wrap">
                 {data?.categories
-                  .slice(0, 4)
+                  .slice(0, 5)
                   .map((category: string, idx: number) => (
                     <Badge title={category} key={idx} />
                   ))}
@@ -77,12 +69,14 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
             )}
             <div>
               <h2 className="capitalize font-semibold text-lg flex items-center gap-1.5">
-                <Image
-                  src={data?.image?.large}
-                  alt={data?.name}
-                  width={24}
-                  height={24}
-                />
+                {data?.image?.large && (
+                  <Image
+                    src={data?.image?.large}
+                    alt={data?.name}
+                    width={24}
+                    height={24}
+                  />
+                )}
                 {coin}
                 <span className="text-sm text-neutral-100 font-medium relative top-[1px]">
                   <span className="uppercase">{data?.symbol}</span> Price
@@ -93,7 +87,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
                   {parsePrice(data?.market_data?.current_price.usd)}
                 </h3>
                 <ValueChangeDisplay
-                  change={data?.market_data?.price_change_24h}
+                  change={data?.market_data?.price_change_percentage_24h}
                   size={SizeVariants.lg}
                 />
               </div>
@@ -101,7 +95,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
           </section>
           <section className="flex flex-col gap-12 pt-8 border-t border-neutral-50/10">
             <h4 className="text-base font-semibold">Market Info</h4>
-            <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
+            <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
               {coinStats.map((stat) => (
                 <div key={stat.key} className="col-span-1">
                   <StatBlock title={stat.key} value={stat.value} />

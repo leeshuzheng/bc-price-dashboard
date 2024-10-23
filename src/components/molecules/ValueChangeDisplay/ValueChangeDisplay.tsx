@@ -22,7 +22,7 @@ export const ValueChangeDisplay = ({
       })}
     >
       <Icon className={clsx({ "text-xl": size === SizeVariants.lg })} />
-      {percentFormat(Math.abs(change), 100, 0, 1)}
+      {percentFormat(Math.abs(change), 100, 0, 2)}
     </span>
   );
 };
