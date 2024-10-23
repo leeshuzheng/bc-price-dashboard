@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/system";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import NextTopLoader from "nextjs-toploader";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,7 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <NextUIProvider>
-        <main className="dark">
+        <Head>
+          <title>Price Dashboard</title>
+        </Head>
+        <main>
           <NextTopLoader color="#80e038" />
           <Header />
           <Component {...pageProps} />
