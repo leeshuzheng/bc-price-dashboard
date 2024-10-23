@@ -9,12 +9,14 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/table";
+import { ColumnSize } from "@react-types/table";
 import Link from "next/link";
 import { Key, useCallback } from "react";
 import { columns, tableClassNames } from "./constants";
+import { CoinData } from "./types";
 
 export const Dashboard = ({ coins }: { coins: Coin[] }) => {
-  const coinsArr = Object.entries(coins).map((item) => ({
+  const coinsArr: CoinData[] = Object.entries(coins).map((item) => ({
     coin: item[0],
     usd: item[1].usd,
     usd_24h_change: item[1].usd_24h_change,
@@ -22,8 +24,7 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
     usd_market_cap: item[1].usd_market_cap,
   }));
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderCell = useCallback((item: any, key: Key) => {
+  const renderCell = useCallback((item: CoinData, key: Key) => {
     switch (key) {
       case "coin":
         return <Link href={`/coins/${item.coin}`}>{item.coin}</Link>;
@@ -35,9 +36,9 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
         return <ValueChangeDisplay change={item.usd_24h_change} />;
       case "usd_24h_vol":
       case "usd_market_cap":
-        return usdFormat(item[key as string]);
+        return usdFormat(item.usd_market_cap);
       default:
-        return item[key as string] as React.ReactNode;
+        return item[key as keyof CoinData] as React.ReactNode;
     }
   }, []);
 
@@ -49,8 +50,7 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
       <Table aria-label="Cryptocurrency Prices" classNames={tableClassNames}>
         <TableHeader columns={columns}>
           {(column) => (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            <TableColumn key={column.key} width={column.width as any}>
+            <TableColumn key={column.key} width={column.width as ColumnSize}>
               <p className={column.className}>{column.label}</p>
             </TableColumn>
           )}
