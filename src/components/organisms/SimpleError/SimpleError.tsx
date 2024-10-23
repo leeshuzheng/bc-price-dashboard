@@ -8,8 +8,8 @@ export const SimpleError = () => {
         Oops! Something went wrong
       </h2>
       <span>
-        We're sorry, but we encountered an unexpected error. Our team has been
-        notified and is working on resolving the issue.
+        We&apos;re sorry, but we encountered an unexpected error. Our team has
+        been notified and is working on resolving the issue.
       </span>
     </section>
   );
