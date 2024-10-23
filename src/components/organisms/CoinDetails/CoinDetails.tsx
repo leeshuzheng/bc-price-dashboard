@@ -18,6 +18,14 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
     if (!data) return [];
     return [
       {
+        key: "24h High",
+        value: parsePrice(data?.market_data?.high_24h?.usd),
+      },
+      {
+        key: "24h Low",
+        value: parsePrice(data?.market_data?.low_24h?.usd),
+      },
+      {
         key: "Market Cap",
         value: usdFormat(data?.market_data?.market_cap.usd),
       },
@@ -36,14 +44,6 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
       {
         key: "24h Change",
         value: data?.market_data?.price_change_percentage_24h,
-      },
-      {
-        key: "24h High",
-        value: parsePrice(data?.market_data?.high_24h?.usd),
-      },
-      {
-        key: "24h Low",
-        value: parsePrice(data?.market_data?.low_24h?.usd),
       },
     ];
   }, [data]);
