@@ -19,7 +19,20 @@ I have to admit - as someone who got very used to writing raw CSS, I was not the
 
 I got the most bareboned installation of NextUI to get a basic table component up and running. It's a pain handling tables, and this is a great package for devs who have sufficient understanding of building UIs.
 
-## To run this project locally
+## Assumptions
+
+1. The list of cryptocurrencies is not exhaustive, or anything close to what CoinGecko has in their table. Adding more data to the table is a matter of adding more currencies to `env`.
+2. We are not having a fallback for when the API call fails. Being rate-limited on the demo tier of CoinGecko's API, there is a limited number of requests I could make.
+3. Given the need for up-to-date cryptocurrency data, I did not cache the /simple/api response.
+
+## Design decisions I made
+
+1. I used Brad Frost's [Atomic Design](https://atomicdesign.bradfrost.com/) methodology to build the UI. This meant seeing the UI as composable building blocks in `atoms`, `molecules`, and `organisms`.
+2. I chose to follow the CoinGecko's color scheme overall, and mirrored closely Blockchain.com's [market data UI](https://www.blockchain.com/explorer/assets/BTC)
+3. Wherever possible, I choose to extract constants and global variables into their own files. This is to ensure that the code is readable and maintainable.
+4.
+
+## Finally, to run this project locally...
 
 `cd` to the project directory and run `yarn`
 

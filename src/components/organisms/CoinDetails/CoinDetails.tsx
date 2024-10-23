@@ -7,6 +7,7 @@ import {
 import { SimpleError } from "@/components/organisms";
 import { useCoinDetails } from "@/hooks";
 import { parsePrice, usdFormat } from "@/utils";
+import clsx from "clsx";
 import Image from "next/image";
 import { useMemo } from "react";
 import { LoadingSkeleton } from "./LoadingSkeleton";
@@ -20,10 +21,12 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
       {
         key: "24h High",
         value: parsePrice(data?.market_data?.high_24h?.usd),
+        className: "text-green",
       },
       {
         key: "24h Low",
         value: parsePrice(data?.market_data?.low_24h?.usd),
+        className: "text-red",
       },
       {
         key: "Market Cap",
@@ -40,10 +43,6 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
       {
         key: "Total Supply",
         value: Math.floor(data?.market_data?.total_supply).toLocaleString(),
-      },
-      {
-        key: "24h Change",
-        value: data?.market_data?.price_change_percentage_24h,
       },
     ];
   }, [data]);
@@ -98,7 +97,10 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
             <h4 className="text-base font-semibold">Market Info</h4>
             <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-8">
               {coinStats.map((stat) => (
-                <li key={stat.key} className="col-span-1">
+                <li
+                  key={stat.key}
+                  className={clsx("col-span-1", stat.className)}
+                >
                   <StatBlock title={stat.key} value={stat.value} />
                 </li>
               ))}

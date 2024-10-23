@@ -1,5 +1,5 @@
 import { ValueChangeDisplay } from "@/components/molecules";
-import { Coin } from "@/types";
+import { Coin, CoinData } from "@/types";
 import { parsePrice, usdFormat } from "@/utils";
 import {
   Table,
@@ -13,7 +13,6 @@ import { ColumnSize } from "@react-types/table";
 import Link from "next/link";
 import { Key, useCallback } from "react";
 import { columns, tableClassNames } from "./constants";
-import { CoinData } from "./types";
 
 export const Dashboard = ({ coins }: { coins: Coin[] }) => {
   const coinsArr: CoinData[] = Object.entries(coins).map((item) => ({
