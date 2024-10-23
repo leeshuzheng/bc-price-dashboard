@@ -15,39 +15,40 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
   const { data, isFetching, isError } = useCoinDetails(coin);
 
   const coinStats = useMemo(() => {
+    if (!data) return [];
     return [
       {
         key: "Market Cap",
-        value: usdFormat(data?.market_data.market_cap.usd),
+        value: usdFormat(data?.market_data?.market_cap.usd),
       },
       {
         key: "Fully Diluted Market Cap",
-        value: usdFormat(data?.market_data.fully_diluted_valuation.usd),
+        value: usdFormat(data?.market_data?.fully_diluted_valuation.usd),
       },
       {
         key: "Total Volume",
-        value: usdFormat(data?.market_data.total_volume.usd),
+        value: usdFormat(data?.market_data?.total_volume.usd),
       },
       {
         key: "Total Supply",
-        value: Math.floor(data?.market_data.total_supply).toLocaleString(),
+        value: Math.floor(data?.market_data?.total_supply).toLocaleString(),
       },
       {
         key: "24h Change",
-        value: data?.market_data.price_change_percentage_24h,
+        value: data?.market_data?.price_change_percentage_24h,
       },
       {
         key: "24h High",
-        value: parsePrice(data?.market_data.high_24h?.usd),
+        value: parsePrice(data?.market_data?.high_24h?.usd),
       },
       {
         key: "24h Low",
-        value: parsePrice(data?.market_data.low_24h?.usd),
+        value: parsePrice(data?.market_data?.low_24h?.usd),
       },
     ];
   }, [data]);
 
-  if (isError && !isFetching) {
+  if ((isError && !isFetching) || data?.error) {
     return <SimpleError />;
   }
 
@@ -58,7 +59,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
       ) : (
         <>
           <section className="pb-4 md:pb-8 flex flex-col gap-3">
-            {data?.categories.length && (
+            {data?.categories?.length && (
               <ul className="flex gap-2 flex-wrap">
                 {data?.categories
                   .slice(0, 5)
@@ -73,8 +74,8 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
                   <Image
                     src={data?.image?.large}
                     alt={data?.name}
-                    width={24}
-                    height={24}
+                    width={32}
+                    height={32}
                   />
                 )}
                 {coin}
@@ -82,7 +83,7 @@ export const CoinDetails = ({ coin }: { coin: string }) => {
                   <span className="uppercase">{data?.symbol}</span> Price
                 </span>
               </h2>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <h3 className="text-4xl font-bold">
                   {parsePrice(data?.market_data?.current_price.usd)}
                 </h3>
