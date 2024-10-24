@@ -32,6 +32,6 @@ export const tableClassNames = {
   th: "border-b border-neutral-50/5 bg-background",
   td: "border-b border-neutral-50/5 py-3 text-xs lg:text-sm",
   thead: "rounded-none",
-  base: "lg:h-[500px] h-screen overflow-auto",
+  base: "lg:h-[500px] h-[80vh] overflow-auto",
   table: "",
 };

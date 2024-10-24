@@ -1,3 +1,4 @@
+import { Footer } from "@/components/organisms";
 import clsx from "clsx";
 import { Inter } from "next/font/google";
 
@@ -12,6 +13,7 @@ export const Page = ({ children }: { children: React.ReactNode }) => {
       )}
     >
       <div className="container px-5 mx-auto">{children}</div>
+      <Footer />
     </div>
   );
 };
