@@ -29,7 +29,7 @@ export const columns = [
 
 export const tableClassNames = {
   wrapper: "p-0 bg-transparent shadow-none rounded-none",
-  th: "bg-transparent border-b border-neutral-50/5",
+  th: "border-b border-neutral-50/5 bg-background",
   td: "border-b border-neutral-50/5 py-3 text-xs lg:text-sm",
   thead: "rounded-none",
   base: "lg:h-[500px] overflow-auto",

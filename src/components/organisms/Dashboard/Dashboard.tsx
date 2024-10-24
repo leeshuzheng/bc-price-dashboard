@@ -46,7 +46,11 @@ export const Dashboard = ({ coins }: { coins: Coin[] }) => {
       <h2 className="text-lg lg:text-2xl font-semibold">
         Cryptocurrency Prices by Market Cap
       </h2>
-      <Table aria-label="Cryptocurrency Prices" classNames={tableClassNames}>
+      <Table
+        aria-label="Cryptocurrency Prices"
+        classNames={tableClassNames}
+        isHeaderSticky
+      >
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn key={column.key} width={column.width as ColumnSize}>

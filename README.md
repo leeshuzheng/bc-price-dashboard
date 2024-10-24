@@ -24,7 +24,7 @@ I got the most bareboned installation of NextUI to get a basic table component u
 1. The list of cryptocurrencies is not exhaustive, or anything close to what CoinGecko has in their table. Adding more data to the table is a matter of adding more currencies to `env`.
 2. We are not having a fallback for when the API call fails. Being rate-limited on the demo tier of CoinGecko's API, there is a limited number of requests I could make.
 3. Given the need for up-to-date cryptocurrency data, I did not cache the /simple/api response.
-4. If a user knows the ID for a cryptocurrency not shown in the table, they can enter it in the search bar for `/coins/[id]`.
+4. If a user knows the ID for a cryptocurrency not shown in the table, they can enter it in the search bar for `/coins/[id]`. I see that as a limitation, given that the list of cryptocurrencies shown is not exhaustive.
 
 ## Design decisions I made
 
