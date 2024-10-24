@@ -15,7 +15,7 @@ export async function getServerSideProps() {
 
     const coins = await res.json();
     return { props: { coins, error: null } };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error:", error);
 
     return { props: { coins: null, error: 500 } }; // internal server error

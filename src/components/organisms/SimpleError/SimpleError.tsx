@@ -10,7 +10,7 @@ export const SimpleError = ({ statusCode }: { statusCode?: number }) => {
       </h2>
       {statusCode && <span>{statusMessages[statusCode]}</span>}
       <span className="text-sm text-neutral-100">
-        Sorry, we couldn't process your request. Please try again later or
+        Sorry, we couldn&apos;t process your request. Please try again later or
         contact support if the problem persists.
       </span>
     </section>
