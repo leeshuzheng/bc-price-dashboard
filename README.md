@@ -23,14 +23,16 @@ I got the most bareboned installation of NextUI to get a basic table component u
 
 1. The list of cryptocurrencies is not exhaustive, or anything close to what CoinGecko has in their table. Adding more data to the table is a matter of adding more currencies to `env`.
 2. We are not having a fallback for when the API call fails. Being rate-limited on the demo tier of CoinGecko's API, there is a limited number of requests I could make.
-3. Given the need for up-to-date cryptocurrency data, I did not cache the /simple/api response.
+3. Given the need for up-to-date cryptocurrency data, I did not cache the `/simple/api` response.
 4. If a user knows the ID for a cryptocurrency not shown in the table, they can enter it in the search bar for `/coins/[id]`. I see that as a limitation, given that the list of cryptocurrencies shown is not exhaustive.
+5. The value of 24 hour percentage change in price of a given cryptocurrency for `/simple/api` may differ from that in `/coins/[id]`.
 
 ## Design decisions I made
 
 1. I used Brad Frost's [Atomic Design](https://atomicdesign.bradfrost.com/) methodology to build the UI. This meant seeing the UI as composable building blocks in `atoms`, `molecules`, and `organisms`.
 2. I chose to follow the CoinGecko's color scheme overall, and mirrored closely Blockchain.com's [market data UI](https://www.blockchain.com/explorer/assets/BTC)
 3. Wherever possible, I choose to extract constants and global variables into their own files. This is to ensure that the code is readable and maintainable.
+4. Due to the limited scope of this app, I did not pass error codes or messages to the UI in my `SimpleError` component.
 
 ## Finally, to run this project locally...
 
